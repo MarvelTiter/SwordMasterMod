@@ -1,0 +1,18 @@
+{
+  "swordMaster:Strike_SwordMaster": {
+    "NAME": "打击",
+    "DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "swordMaster:Defend_SwordMaster": {
+    "NAME": "防御",
+    "DESCRIPTION": "获得 !B! 点 格挡 。"
+  },
+  "swordMaster:BackStepCutter": {
+    "NAME": "后跳斩",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !B! 点 格挡 。"
+  },
+  "swordMaster:GhostFence": {
+    "NAME": "里·鬼剑术",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+  }
+}
