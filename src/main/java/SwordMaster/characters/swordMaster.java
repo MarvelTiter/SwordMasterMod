@@ -5,6 +5,7 @@ import SwordMaster.cards.BackStepCutter;
 import SwordMaster.cards.Defend_SwordMaster;
 import SwordMaster.cards.SecretSwordArt;
 import SwordMaster.cards.Strike_SwordMaster;
+import SwordMaster.relics.Limiter;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.AbstractAnimation;
 import com.badlogic.gdx.graphics.Color;
@@ -16,6 +17,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -39,33 +41,33 @@ public class swordMaster extends CustomPlayer {
     private static final String[] NAMES = characterStrings.NAMES;
     private static final String[] TEXT = characterStrings.TEXT;
     public static final String[] orbTextures = {
-            "swordMasterResources/images/char/hermit/orb/layer1.png",
-            "swordMasterResources/images/char/hermit/orb/layer2.png",
-            "swordMasterResources/images/char/hermit/orb/layer3.png",
-            "swordMasterResources/images/char/hermit/orb/layer4.png",
-            "swordMasterResources/images/char/hermit/orb/layer5.png",
-            "swordMasterResources/images/char/hermit/orb/layer6.png",
-            "swordMasterResources/images/char/hermit/orb/layer1d.png",
-            "swordMasterResources/images/char/hermit/orb/layer2d.png",
-            "swordMasterResources/images/char/hermit/orb/layer3d.png",
-            "swordMasterResources/images/char/hermit/orb/layer4d.png",
-            "swordMasterResources/images/char/hermit/orb/layer5d.png"};
+            "swordMasterResources/images/char/swordMaster/orb/layer1.png",
+            "swordMasterResources/images/char/swordMaster/orb/layer2.png",
+            "swordMasterResources/images/char/swordMaster/orb/layer3.png",
+            "swordMasterResources/images/char/swordMaster/orb/layer4.png",
+            "swordMasterResources/images/char/swordMaster/orb/layer5.png",
+            "swordMasterResources/images/char/swordMaster/orb/layer6.png",
+            "swordMasterResources/images/char/swordMaster/orb/layer1d.png",
+            "swordMasterResources/images/char/swordMaster/orb/layer2d.png",
+            "swordMasterResources/images/char/swordMaster/orb/layer3d.png",
+            "swordMasterResources/images/char/swordMaster/orb/layer4d.png",
+            "swordMasterResources/images/char/swordMaster/orb/layer5d.png"};
     private float fireTimer = 0.0f;
     // public Slot eye = this.skeleton.findSlot("eye");
 
     public static class Enums {
         @SpireEnum
         public static AbstractPlayer.PlayerClass SWORD_MASTER;
-        @SpireEnum(name = "MASTER_YELLOW")
+        @SpireEnum(name = "MASTER_COLOR")
         public static AbstractCard.CardColor COLOR_LIGHT_BLUE;
-        @SpireEnum(name = "MASTER_YELLOW")
+        @SpireEnum(name = "MASTER_COLOR")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
     }
 
 
     public swordMaster(String name, AbstractPlayer.PlayerClass setClass) {
         super(name, setClass, orbTextures,
-                "swordMasterResources/images/char/hermit/orb/vfx.png", (float[]) null, new AbstractAnimation() { // from class: hermit.characters.hermit.1
+                "swordMasterResources/images/char/swordMaster/orb/vfx.png", (float[]) null, new AbstractAnimation() { // from class: hermit.characters.hermit.1
             public AbstractAnimation.Type type() {
                 return AbstractAnimation.Type.NONE;
             }
@@ -101,7 +103,7 @@ public class swordMaster extends CustomPlayer {
     @Override
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add("Tingsha");
+        retVal.add(Limiter.ID);
         return retVal;
     }
 
@@ -122,7 +124,7 @@ public class swordMaster extends CustomPlayer {
 
     @Override
     public Color getCardRenderColor() {
-        return Color.YELLOW;
+        return CardHelper.getColor(129.0f, 232.0f, 223.0f);
     }
 
     @Override
@@ -132,7 +134,7 @@ public class swordMaster extends CustomPlayer {
 
     @Override
     public Color getCardTrailColor() {
-        return Color.YELLOW;
+        return CardHelper.getColor(129.0f, 232.0f, 223.0f);
     }
 
     @Override
@@ -167,7 +169,7 @@ public class swordMaster extends CustomPlayer {
 
     @Override
     public Color getSlashAttackColor() {
-        return Color.YELLOW;
+        return CardHelper.getColor(129.0f, 232.0f, 223.0f);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class TextureLoader {
     }
 
     private static void loadTexture(String textureString) throws GdxRuntimeException {
-        System.out.println("HermitMod | Loading Texture: " + textureString);
+        System.out.println("SwordMasterMod | Loading Texture: " + textureString);
         Texture texture = new Texture(textureString);
         texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         textures.put(textureString, texture);

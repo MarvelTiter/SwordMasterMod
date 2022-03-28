@@ -4,6 +4,7 @@ import SwordMaster.SwordMasterMod;
 import SwordMaster.characters.swordMaster;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -18,8 +19,8 @@ public class SecretSwordArt extends Master_AbstractCard{
     private static final String IMG_PATH = SwordMasterMod.makeCardPath("Secret_Sword_Art.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-    public static final int COST = 0;
-    private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.BASIC;
+    public static final int COST = 1;
+    private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
     private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
     public static final AbstractCard.CardColor COLOR = swordMaster.Enums.COLOR_LIGHT_BLUE;
@@ -49,5 +50,6 @@ public class SecretSwordArt extends Master_AbstractCard{
             AbstractGameAction action = new DamageAction(m,dInfo , AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
             AbstractDungeon.actionManager.addToBottom(action);
         }
+        addToBot(new MakeTempCardInHandAction(new Slash(), this.magicNumber));
     }
 }

@@ -11,8 +11,12 @@
     "NAME": "后跳斩",
     "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !B! 点 格挡 。"
   },
-  "swordMaster:GhostFence": {
+  "swordMaster:SecretSwordArt": {
     "NAME": "里·鬼剑术",
     "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+  },
+  "swordMaster:Slash":{
+    "NAME":"斩击",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予1层 感电 。 NL 消耗 。"
   }
 }

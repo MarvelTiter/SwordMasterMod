@@ -1,0 +1,10 @@
+{
+  "swordMaster:ElectricShock": {
+    "NAME": "感电",
+    "DESCRIPTIONS": ["本回合内，目标额外受到 #b", " 点攻击伤害。 NL 每次攻击减少本效果 #b1 层"]
+  },
+  "swordMaster:FlowingStance": {
+    "NAME": "流心",
+    "DESCRIPTIONS": ["拥有流心的牌 NL 消耗一层流心 NL 触发额外效果"]
+  }
+}

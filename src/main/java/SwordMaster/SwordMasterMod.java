@@ -2,7 +2,9 @@ package SwordMaster;
 
 import SwordMaster.cards.Master_AbstractCard;
 import SwordMaster.characters.swordMaster;
+import SwordMaster.relics.Limiter;
 import SwordMaster.utils.IDCheckDontTouchPls;
+import SwordMaster.utils.KeywordWithProper;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.interfaces.*;
@@ -16,6 +18,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -39,10 +42,10 @@ public class SwordMasterMod implements EditCardsSubscriber, EditRelicsSubscriber
     private static final String ENERGY_ORB_DEFAULT_GRAY_PORTRAIT = "swordMasterResources/images/1024/card_default_gray_orb.png";
     private static final String THE_DEFAULT_BUTTON = "swordMasterResources/images/charSelect/SwordMasterButton.png";
     private static final String THE_DEFAULT_PORTRAIT = "swordMasterResources/images/charSelect/SwordMasterSelect.png";
-    public static final String THE_DEFAULT_IDLE = "swordMasterResources/images/char/hermit/idle.png";
-    public static final String THE_DEFAULT_SHOULDER_1 = "swordMasterResources/images/char/hermit/shoulder.png";
-    public static final String THE_DEFAULT_SHOULDER_2 = "swordMasterResources/images/char/hermit/shoulder2.png";
-    public static final String THE_DEFAULT_CORPSE = "swordMasterResources/images/char/hermit/corpse.png";
+    public static final String THE_DEFAULT_IDLE = "swordMasterResources/images/char/swordMaster/idle.png";
+    public static final String THE_DEFAULT_SHOULDER_1 = "swordMasterResources/images/char/swordMaster/shoulder.png";
+    public static final String THE_DEFAULT_SHOULDER_2 = "swordMasterResources/images/char/swordMaster/shoulder2.png";
+    public static final String THE_DEFAULT_CORPSE = "swordMasterResources/images/char/swordMaster/corpse.png";
     public static final String BADGE_IMAGE = "swordMasterResources/images/Badge.png";
     public static CardGroup deadList;
     public static boolean enablePlaceholder = true;
@@ -51,7 +54,7 @@ public class SwordMasterMod implements EditCardsSubscriber, EditRelicsSubscriber
     public static Properties theDefaultDefaultSettings = new Properties();
     public static boolean tackybypass = false;
     public static final Color DEFAULT_GRAY = CardHelper.getColor(64.0f, 70.0f, 70.0f);
-    public static final Color HERMIT_YELLOW = CardHelper.getColor(254.0f, 223.0f, 0.0f);
+    public static final Color CHARACTER_COLOR = CardHelper.getColor(129.0f, 232.0f, 223.0f);
     public static final Color PLACEHOLDER_POTION_LIQUID = CardHelper.getColor(209.0f, 53.0f, 18.0f);
     public static final Color PLACEHOLDER_POTION_HYBRID = CardHelper.getColor(255.0f, 230.0f, 230.0f);
     public static final Color PLACEHOLDER_POTION_SPOTS = CardHelper.getColor(100.0f, 25.0f, 10.0f);
@@ -92,13 +95,13 @@ public class SwordMasterMod implements EditCardsSubscriber, EditRelicsSubscriber
         System.out.println("Done subscribing");
         System.out.println("Creating the color " + swordMaster.Enums.COLOR_LIGHT_BLUE.toString());
         BaseMod.addColor(swordMaster.Enums.COLOR_LIGHT_BLUE
-                , HERMIT_YELLOW
-                , HERMIT_YELLOW
-                , HERMIT_YELLOW
-                , HERMIT_YELLOW
-                , HERMIT_YELLOW
-                , HERMIT_YELLOW
-                , HERMIT_YELLOW
+                , CHARACTER_COLOR
+                , CHARACTER_COLOR
+                , CHARACTER_COLOR
+                , CHARACTER_COLOR
+                , CHARACTER_COLOR
+                , CHARACTER_COLOR
+                , CHARACTER_COLOR
                 , ATTACK_DEFAULT_GRAY
                 , SKILL_DEFAULT_GRAY
                 , POWER_DEFAULT_GRAY
@@ -170,16 +173,16 @@ public class SwordMasterMod implements EditCardsSubscriber, EditRelicsSubscriber
 
     @Override
     public void receiveEditKeywords() {
-
+        loadKeywords("zhs");
     }
     private void loadKeywords(String langKey) {
-//        if (!Gdx.files.internal(getModID() + "Resources/localization/" + langKey).exists()) {
-//            System.out.println("Hermit: Language not found: " + langKey);
-//            return;
-//        }
-//        KeywordWithProper[] keywordWithProperArr = (KeywordWithProper[]) BaseMod.gson.fromJson(GetLocString(langKey, "Keyword-Strings"), KeywordWithProper[].class);
-//        for (KeywordWithProper keyword : keywordWithProperArr) {
-//            BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+        if (!Gdx.files.internal(getModID() + "Resources/localization/" + langKey).exists()) {
+            System.out.println("Hermit: Language not found: " + langKey);
+            return;
+        }
+        KeywordWithProper[] keywordWithProperArr = BaseMod.gson.fromJson(GetLocString(langKey, "Keyword"), KeywordWithProper[].class);
+        for (KeywordWithProper keyword : keywordWithProperArr) {
+            BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
 //            if (keyword.ID.equals("rugged")) {
 //                Tonic.keyword_name = keyword.PROPER_NAME;
 //                Tonic.keyword_description = keyword.DESCRIPTION;
@@ -188,11 +191,15 @@ public class SwordMasterMod implements EditCardsSubscriber, EditRelicsSubscriber
 //                BlackBile.keyword_name = keyword.PROPER_NAME;
 //                BlackBile.keyword_description = keyword.DESCRIPTION;
 //            }
-//        }
+        }
     }
 
     @Override
     public void receiveEditRelics() {
+        System.out.println("Adding relics");
+        BaseMod.addRelicToCustomPool(new Limiter(), swordMaster.Enums.COLOR_LIGHT_BLUE);
+        UnlockTracker.markRelicAsSeen(Limiter.ID);
+        System.out.println("Done adding relics!");
 
     }
 
@@ -207,8 +214,8 @@ public class SwordMasterMod implements EditCardsSubscriber, EditRelicsSubscriber
             return;
         }
         BaseMod.loadCustomStrings(CardStrings.class, GetLocString(langKey, "Card"));
-//        BaseMod.loadCustomStrings(RelicStrings.class, GetLocString(langKey, "Relic"));
-//        BaseMod.loadCustomStrings(PowerStrings.class, GetLocString(langKey, "Power"));
+        BaseMod.loadCustomStrings(RelicStrings.class, GetLocString(langKey, "Relic"));
+        BaseMod.loadCustomStrings(PowerStrings.class, GetLocString(langKey, "Power"));
         BaseMod.loadCustomStrings(CharacterStrings.class, GetLocString(langKey, "Character"));
 //        BaseMod.loadCustomStrings(UIStrings.class, GetLocString(langKey, "UI"));
 //        BaseMod.loadCustomStrings(PotionStrings.class, GetLocString(langKey, "Potion"));

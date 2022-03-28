@@ -1,0 +1,9 @@
+{
+  "swordMaster:Limiter": {
+    "NAME": "限制器",
+    "FLAVOR": "限制鬼手侵蚀的装置",
+    "DESCRIPTIONS": [
+      "每场战斗第一回合获得1力量1敏捷"
+    ]
+  }
+}
