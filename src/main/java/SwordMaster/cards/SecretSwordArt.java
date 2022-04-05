@@ -13,14 +13,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class SecretSwordArt extends Master_AbstractCard{
+public class SecretSwordArt extends Master_AbstractCard {
     public static final String ID = SwordMasterMod.makeID(SecretSwordArt.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     private static final String IMG_PATH = SwordMasterMod.makeCardPath("Secret_Sword_Art.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-    public static final int COST = 1;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
+    public static final int COST = 0;
+    private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
     private static final AbstractCard.CardType TYPE = CardType.ATTACK;
     public static final AbstractCard.CardColor COLOR = swordMaster.Enums.COLOR_LIGHT_BLUE;
@@ -28,6 +28,7 @@ public class SecretSwordArt extends Master_AbstractCard{
     private static final int UPGRADE_DAMAGE = -1;
     private static final int MAGIC_NUMBER = 2;
     private static final int UPGRADE_MAGIC_NUMBER = 2;
+
     public SecretSwordArt() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = DAMAGE;
@@ -36,7 +37,7 @@ public class SecretSwordArt extends Master_AbstractCard{
 
     @Override
     public void upgrade() {
-        if (!this.upgraded){
+        if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_DAMAGE);
             this.upgradeMagicNumber(UPGRADE_MAGIC_NUMBER);
@@ -45,11 +46,15 @@ public class SecretSwordArt extends Master_AbstractCard{
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (int i = 0; i < this.magicNumber; i++) {
+        for (int i = 0; i < this.baseMagicNumber; i++) {
             DamageInfo dInfo = new DamageInfo(p, this.damage, this.damageTypeForTurn);
-            AbstractGameAction action = new DamageAction(m,dInfo , AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+            AbstractGameAction action = new DamageAction(m, dInfo, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
             AbstractDungeon.actionManager.addToBottom(action);
         }
-        addToBot(new MakeTempCardInHandAction(new Slash(), this.magicNumber));
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new SecretSwordArt();
     }
 }

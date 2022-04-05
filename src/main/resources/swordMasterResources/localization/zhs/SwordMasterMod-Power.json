@@ -1,10 +1,61 @@
 {
-  "swordMaster:ElectricShock": {
-    "NAME": "感电",
-    "DESCRIPTIONS": ["本回合内，目标额外受到 #b", " 点攻击伤害。 NL 每次攻击减少本效果 #b1 层"]
-  },
-  "swordMaster:FlowingStance": {
-    "NAME": "流心",
-    "DESCRIPTIONS": ["拥有流心的牌 NL 消耗一层流心 NL 触发额外效果"]
-  }
+    "swordmaster:ElectricShock": {
+        "NAME": "感电",
+        "DESCRIPTIONS": ["本回合内，目标额外受到 #b", " 点攻击伤害"]
+    },
+    "swordmaster:ElectricShockRetain": {
+        "NAME": "导体",
+        "DESCRIPTIONS": ["#y感电 在 #b", " 回合内不会消失"]
+    },
+    "swordmaster:FlowingStance": {
+        "NAME": "流心",
+        "DESCRIPTIONS": ["拥有流心的牌 NL 消耗一层流心 NL 触发额外效果"]
+    },
+    "swordmaster:FlowingStanceForce": {
+        "NAME": "流心狂",
+        "DESCRIPTIONS": ["流心系列将得到加强"]
+    },
+    "swordmaster:TelekineticSwords": {
+        "NAME": "万剑归宗",
+        "DESCRIPTIONS": ["再打出 #b", " 次攻击 NL 获取 [E] 并抽 #b1 张牌"]
+    },
+    "swordmaster:StunSelfPower": {
+        "NAME": "眩晕",
+        "DESCRIPTIONS": [
+            "在 #b",
+            " 个回合不作任何行动",
+            " 个回合不作任何行动"
+        ]
+    },
+    "swordmaster:BasicTrainingEnergy": {
+        "NAME": "基础精通E",
+        "DESCRIPTIONS": [
+            "再打出 #b", " 张攻击牌 NL 获得 #b", " [E] "
+        ]
+    },
+    "swordmaster:BasicTrainingDraw": {
+        "NAME": "基础精通D",
+        "DESCRIPTIONS": [
+            "再打出 #b", " 张攻击牌 NL 抽 #b", " 张牌 "
+        ]
+    },
+    "swordmaster:Guard": {
+        "NAME": "格挡姿态",
+        "DESCRIPTIONS": [
+            "所受伤害减少40%"
+        ]
+    },
+    "swordmaster:LoseThronsPower": {
+        "NAME": "荆棘下降",
+        "DESCRIPTIONS": [
+            "在你的回合结束时，失去 #b",
+            " 点 #y荆棘 。"
+        ]
+    },
+    "swordmaster:SwordBarrierPower": {
+        "NAME": "招架",
+        "DESCRIPTIONS": [
+            "每次攻击获得2点格挡"
+        ]
+    }
 }

@@ -2,12 +2,36 @@ package SwordMaster.characters;
 
 import SwordMaster.SwordMasterMod;
 import SwordMaster.cards.BackStepCutter;
+import SwordMaster.cards.BasicTraining;
 import SwordMaster.cards.Defend_SwordMaster;
+import SwordMaster.cards.DeftGrip;
+import SwordMaster.cards.Derange;
+import SwordMaster.cards.FlowingStanceClash;
+import SwordMaster.cards.FlowingStanceDefend;
+import SwordMaster.cards.FlowingStanceForce;
+import SwordMaster.cards.FlowingStanceRise;
+import SwordMaster.cards.FlowingStanceSwift;
+import SwordMaster.cards.Guard;
+import SwordMaster.cards.GuardCross;
+import SwordMaster.cards.HeartBlade;
+import SwordMaster.cards.KingGuardLighting;
+import SwordMaster.cards.KingGuardWind;
+import SwordMaster.cards.LightningDrawSword;
+import SwordMaster.cards.RagingDragonSlash;
+import SwordMaster.cards.RapidWeaponSwitch;
 import SwordMaster.cards.SecretSwordArt;
 import SwordMaster.cards.Strike_SwordMaster;
+import SwordMaster.cards.SwordBarrier;
+import SwordMaster.cards.TelekineticSwords;
+import SwordMaster.cards.UltimateSlayTempest;
+import SwordMaster.cards.UpwardSlash;
+import SwordMaster.cards.WeaponWieldersZenith;
+import SwordMaster.relics.AttackCounter;
 import SwordMaster.relics.Limiter;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.AbstractAnimation;
+import basemod.helpers.CardTags;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
@@ -41,18 +65,18 @@ public class swordMaster extends CustomPlayer {
     private static final String[] NAMES = characterStrings.NAMES;
     private static final String[] TEXT = characterStrings.TEXT;
     public static final String[] orbTextures = {
-            "swordMasterResources/images/char/swordMaster/orb/layer1.png",
-            "swordMasterResources/images/char/swordMaster/orb/layer2.png",
-            "swordMasterResources/images/char/swordMaster/orb/layer3.png",
-            "swordMasterResources/images/char/swordMaster/orb/layer4.png",
-            "swordMasterResources/images/char/swordMaster/orb/layer5.png",
-            "swordMasterResources/images/char/swordMaster/orb/layer6.png",
-            "swordMasterResources/images/char/swordMaster/orb/layer1d.png",
-            "swordMasterResources/images/char/swordMaster/orb/layer2d.png",
-            "swordMasterResources/images/char/swordMaster/orb/layer3d.png",
-            "swordMasterResources/images/char/swordMaster/orb/layer4d.png",
-            "swordMasterResources/images/char/swordMaster/orb/layer5d.png"};
-    private float fireTimer = 0.0f;
+            "swordmasterResources/images/char/swordMaster/orb/layer1.png",
+            "swordmasterResources/images/char/swordMaster/orb/layer2.png",
+            "swordmasterResources/images/char/swordMaster/orb/layer3.png",
+            "swordmasterResources/images/char/swordMaster/orb/layer4.png",
+            "swordmasterResources/images/char/swordMaster/orb/layer5.png",
+            "swordmasterResources/images/char/swordMaster/orb/layer6.png",
+            "swordmasterResources/images/char/swordMaster/orb/layer1d.png",
+            "swordmasterResources/images/char/swordMaster/orb/layer2d.png",
+            "swordmasterResources/images/char/swordMaster/orb/layer3d.png",
+            "swordmasterResources/images/char/swordMaster/orb/layer4d.png",
+            "swordmasterResources/images/char/swordMaster/orb/layer5d.png" };
+    // private float fireTimer = 0.0f;
     // public Slot eye = this.skeleton.findSlot("eye");
 
     public static class Enums {
@@ -62,26 +86,27 @@ public class swordMaster extends CustomPlayer {
         public static AbstractCard.CardColor COLOR_LIGHT_BLUE;
         @SpireEnum(name = "MASTER_COLOR")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
+        @SpireEnum(name = "FlowingStance")
+        public static com.megacrit.cardcrawl.cards.AbstractCard.CardTags FlowingStance;
+        @SpireEnum(name = "FlowingForce")
+        public static com.megacrit.cardcrawl.cards.AbstractCard.CardTags FlowingForce;
     }
-
 
     public swordMaster(String name, AbstractPlayer.PlayerClass setClass) {
         super(name, setClass, orbTextures,
-                "swordMasterResources/images/char/swordMaster/orb/vfx.png", (float[]) null, new AbstractAnimation() { // from class: hermit.characters.hermit.1
-            public AbstractAnimation.Type type() {
-                return AbstractAnimation.Type.NONE;
-            }
-        });
-        initializeClass(SwordMasterMod.THE_DEFAULT_IDLE
-                , SwordMasterMod.THE_DEFAULT_SHOULDER_2
-                , SwordMasterMod.THE_DEFAULT_SHOULDER_1
-                , SwordMasterMod.THE_DEFAULT_CORPSE
-                , getLoadout(), 20.0f, -10.0f, 220.0f, 290.0f
-                , new EnergyManager(ENERGY_PER_TURN));
+                "swordmasterResources/images/char/swordMaster/orb/vfx.png", (float[]) null, new AbstractAnimation() { // from
+                                                                                                                      // class:
+                                                                                                                      // hermit.characters.hermit.1
+                    public AbstractAnimation.Type type() {
+                        return AbstractAnimation.Type.NONE;
+                    }
+                });
+        initializeClass(SwordMasterMod.THE_DEFAULT_IDLE, SwordMasterMod.THE_DEFAULT_SHOULDER_2,
+                SwordMasterMod.THE_DEFAULT_SHOULDER_1, SwordMasterMod.THE_DEFAULT_CORPSE, getLoadout(), 20.0f, -10.0f,
+                220.0f, 290.0f, new EnergyManager(ENERGY_PER_TURN));
         this.dialogX = this.drawX + (0.0f * Settings.scale);
         this.dialogY = this.drawY + (220.0f * Settings.scale);
     }
-
 
     @Override
     public ArrayList<String> getStartingDeck() {
@@ -95,8 +120,20 @@ public class swordMaster extends CustomPlayer {
         retVal.add(Defend_SwordMaster.ID);
         retVal.add(Defend_SwordMaster.ID);
         retVal.add(Defend_SwordMaster.ID);
+        retVal.add(UpwardSlash.ID);
         retVal.add(BackStepCutter.ID);
-        retVal.add(SecretSwordArt.ID);
+
+        // retVal.add(Derange.ID);
+        // retVal.add(BasicTraining.ID);
+        // retVal.add(SecretSwordArt.ID);
+        // retVal.add(Guard.ID);
+
+        // retVal.add(FlowingStanceForce.ID);
+        // retVal.add(FlowingStanceDefend.ID);
+        // retVal.add(SwordBarrier.ID);
+        // retVal.add(KingGuardLighting.ID);
+        // retVal.add(KingGuardWind.ID);
+
         return retVal;
     }
 
@@ -104,17 +141,19 @@ public class swordMaster extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
         retVal.add(Limiter.ID);
+        retVal.add(AttackCounter.ID);
         return retVal;
     }
 
     @Override
     public CharSelectInfo getLoadout() {
-        return new CharSelectInfo(NAMES[0], TEXT[0], STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(), getStartingDeck(), false);
+        return new CharSelectInfo(NAMES[0], TEXT[0], STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this,
+                getStartingRelics(), getStartingDeck(), false);
     }
 
     @Override
     public String getTitle(PlayerClass playerClass) {
-        return  NAMES[0];
+        return NAMES[0];
     }
 
     @Override

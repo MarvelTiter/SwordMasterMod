@@ -6,9 +6,13 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Current File",
+            "name": "Launch Java Program",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "F:\\SteamLibrary\\steamapps\\workshop\\content\\646570\\1605060445\\ModTheSpire.jar",
+            "classPaths": [
+                "F:\\SteamLibrary\\steamapps\\workshop\\content\\646570\\1605060445\\ModTheSpire.jar"
+            ],
+            "cwd": "F:\\SteamLibrary\\steamapps\\common\\SlayTheSpire",
         }
     ]
 }

@@ -1,11 +1,11 @@
 package SwordMaster.cards;
 
 import SwordMaster.SwordMasterMod;
-import SwordMaster.characters.swordMaster;
 import SwordMaster.powers.ElectricShock;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -26,11 +26,10 @@ public class Slash extends Master_AbstractCard {
     private static final CardColor COLOR = CardColor.COLORLESS;
     private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.ENEMY;
+
     public Slash() {
         // 卡牌ID，卡牌名称，图片路径，费用，描述，卡牌类型，卡牌颜色，卡牌稀有度，卡牌目标
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(CardTags.STARTER_STRIKE);
-        this.tags.add(CardTags.STRIKE);
         this.baseDamage = ATTACK_DMG;
         this.exhaust = true;
     }
@@ -46,8 +45,13 @@ public class Slash extends Master_AbstractCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         DamageInfo dInfo = new DamageInfo(p, this.damage, this.damageTypeForTurn);
-        AbstractGameAction action = new DamageAction(m,dInfo , AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        AbstractGameAction action = new DamageAction(m, dInfo, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         AbstractDungeon.actionManager.addToBottom(action);
         addToBot(new ApplyPowerAction(m, p, new ElectricShock(m, 1), 1, true));
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new Slash();
     }
 }

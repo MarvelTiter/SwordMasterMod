@@ -1,9 +1,16 @@
 {
-  "swordMaster:Limiter": {
-    "NAME": "限制器",
-    "FLAVOR": "限制鬼手侵蚀的装置",
-    "DESCRIPTIONS": [
-      "每场战斗第一回合获得1力量1敏捷"
-    ]
-  }
+    "swordmaster:Limiter": {
+        "NAME": "限制器",
+        "FLAVOR": "限制鬼手侵蚀的装置",
+        "DESCRIPTIONS": [
+            "每场战斗第一回合获得 #b1 临时力量 #b1 临时敏捷。"
+        ]
+    },
+    "swordmaster:AttackCounter": {
+        "NAME": "计数器",
+        "FLAVOR": "计算每场战斗攻击次数",
+        "DESCRIPTIONS": [
+            "计算每场战斗攻击次数"
+        ]
+    }
 }

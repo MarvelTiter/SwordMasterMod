@@ -4,6 +4,7 @@ import SwordMaster.SwordMasterMod;
 import SwordMaster.characters.swordMaster;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -35,9 +36,9 @@ public class Strike_SwordMaster extends Master_AbstractCard {
 
     @Override
     public void upgrade() {
-        //卡牌升级后的效果
+        // 卡牌升级后的效果
         if (!this.upgraded) {
-            //更改名字和提高3点伤害
+            // 更改名字和提高3点伤害
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
         }
@@ -46,7 +47,12 @@ public class Strike_SwordMaster extends Master_AbstractCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         DamageInfo dInfo = new DamageInfo(p, this.damage, this.damageTypeForTurn);
-        AbstractGameAction action = new DamageAction(m,dInfo , AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        AbstractGameAction action = new DamageAction(m, dInfo, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         AbstractDungeon.actionManager.addToBottom(action);
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new Strike_SwordMaster();
     }
 }

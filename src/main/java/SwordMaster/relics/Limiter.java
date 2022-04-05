@@ -20,7 +20,7 @@ public class Limiter extends CustomRelic {
     private int TURNS = 0;
 
     public Limiter() {
-        super(ID, IMG, AbstractRelic.RelicTier.STARTER, LandingSound.HEAVY);
+        super(ID, IMG, OUTLINE, AbstractRelic.RelicTier.STARTER, LandingSound.HEAVY);
     }
 
     public void atBattleStart() {

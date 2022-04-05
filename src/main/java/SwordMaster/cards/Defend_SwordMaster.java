@@ -29,6 +29,7 @@ public class Defend_SwordMaster extends Master_AbstractCard {
         this.baseBlock = BLOCK;
         this.tags.add(AbstractCard.CardTags.STARTER_DEFEND);
     }
+
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
@@ -40,5 +41,10 @@ public class Defend_SwordMaster extends Master_AbstractCard {
             upgradeBlock(UPGRADE_PLUS_BLOCK);
             initializeDescription();
         }
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new Defend_SwordMaster();
     }
 }

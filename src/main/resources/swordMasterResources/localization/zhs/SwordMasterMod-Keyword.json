@@ -1,9 +1,29 @@
-[
-  {
-    "PROPER_NAME": "感电",
-    "NAMES": [
-      "感电"
-    ],
-    "DESCRIPTION": "受感电效果影响的敌人将受到额外伤害。 NL 每次触发后失去 #b1 层。 NL 回合结束时失去该效果。"
-  }
+[{
+        "PROPER_NAME": "感电",
+        "NAMES": [
+            "感电"
+        ],
+        "DESCRIPTION": "受感电效果影响的敌人将受到额外伤害。"
+    },
+    {
+        "PROPER_NAME": "斩击",
+        "NAMES": [
+            "斩击"
+        ],
+        "DESCRIPTION": "斩击是会消耗的 #b0 耗能攻击牌。"
+    },
+    {
+        "PROPER_NAME": "流心",
+        "NAMES": [
+            "流心"
+        ],
+        "DESCRIPTION": "消耗 #y流心 触发额外效果。"
+    },
+    {
+        "PROPER_NAME": "流心狂",
+        "NAMES": [
+            "流心狂"
+        ],
+        "DESCRIPTION": " #y流心 系列将得到加强"
+    }
 ]
