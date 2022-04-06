@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import SwordMaster.SwordMasterMod;
 import SwordMaster.characters.swordMaster;
+import SwordMaster.utils.StatusManage;
 
 public class FlowingStanceClash extends Master_AbstractCard {
     public static final String ID = SwordMasterMod.makeID(FlowingStanceClash.class.getSimpleName());
@@ -55,9 +56,14 @@ public class FlowingStanceClash extends Master_AbstractCard {
         ApplyFlowingStance(p);
     }
 
+    StatusManage s = new StatusManage();
+
     @Override
-    public int preApplyStanceForDamage() {
-        return 1;
+    public void applyPowers() {
+        super.applyPowers();
+        int n = s.getNewValue(hasStanceForce());
+        upgradeDamage(n);
+        initializeDescription();
     }
 
     @Override

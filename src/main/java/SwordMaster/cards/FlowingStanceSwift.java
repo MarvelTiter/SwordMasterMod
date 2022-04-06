@@ -17,6 +17,7 @@ import SwordMaster.SwordMasterMod;
 import SwordMaster.characters.swordMaster;
 import SwordMaster.powers.FlowingStance;
 import SwordMaster.powers.FlowingStanceForcePower;
+import SwordMaster.utils.StatusManage;
 
 public class FlowingStanceSwift extends Master_AbstractCard {
     public static final String ID = SwordMasterMod.makeID(FlowingStanceSwift.class.getSimpleName());
@@ -34,6 +35,8 @@ public class FlowingStanceSwift extends Master_AbstractCard {
     public FlowingStanceSwift() {
         // 卡牌ID，卡牌名称，图片路径，费用，描述，卡牌类型，卡牌颜色，卡牌稀有度，卡牌目标
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(swordMaster.Enums.FlowingForce);
+        this.tags.add(swordMaster.Enums.FlowingStance);
         this.baseDamage = ATTACK_DMG;
     }
 
@@ -54,23 +57,16 @@ public class FlowingStanceSwift extends Master_AbstractCard {
         if (hasStanceForce()) {
             addToBot(new GainBlockAction(p, p, this.damage));
         }
-        ReduceFlowingStance();
+        ReduceFlowingStance(p);
     }
 
-    boolean upgradedApplyStanceCost = false;
+    StatusManage s = new StatusManage();
 
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if (hasStance()) {
-            if (!upgradedApplyStanceCost) {
-                setCostForTurn(costForTurn - 1);
-                upgradedApplyStanceCost = true;
-            }
-        } else {
-            setCostForTurn(costForTurn);
-            upgradedApplyStanceCost = false;
-        }
+        int n = s.getNewValue(hasStance());
+        setCostForTurn(costForTurn - n);
     }
 
     @Override

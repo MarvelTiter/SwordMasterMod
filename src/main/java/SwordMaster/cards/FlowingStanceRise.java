@@ -16,6 +16,7 @@ import SwordMaster.SwordMasterMod;
 import SwordMaster.characters.swordMaster;
 import SwordMaster.powers.FlowingStance;
 import SwordMaster.powers.FlowingStanceForcePower;
+import SwordMaster.utils.StatusManage;
 
 public class FlowingStanceRise extends Master_AbstractCard {
     public static final String ID = SwordMasterMod.makeID(FlowingStanceRise.class.getSimpleName());
@@ -35,6 +36,8 @@ public class FlowingStanceRise extends Master_AbstractCard {
     public FlowingStanceRise() {
         // 卡牌ID，卡牌名称，图片路径，费用，描述，卡牌类型，卡牌颜色，卡牌稀有度，卡牌目标
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(swordMaster.Enums.FlowingForce);
+        this.tags.add(swordMaster.Enums.FlowingStance);
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = MAGIC_NUMBER;
     }
@@ -55,39 +58,24 @@ public class FlowingStanceRise extends Master_AbstractCard {
             AbstractGameAction action = new DamageAction(m, dInfo, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
             addToBot(action);
         }
-        ReduceFlowingStance();
+        ReduceFlowingStance(p);
     }
 
-    boolean upgradedApplyForce = false;
-    boolean upgradedApplyStance = false;
+    // 流心
+    StatusManage s = new StatusManage();
+    // 流心狂
+    StatusManage f = new StatusManage();
 
     @Override
     public void applyPowers() {
         super.applyPowers();
 
-        if (hasStanceForce()) {
-            if (!upgradedApplyForce) {
-                upgradeMagicNumber(1);
-                upgradedApplyForce = true;
-            }
-        } else {
-            if (upgradedApplyForce) {
-                upgradeMagicNumber(-1);
-                upgradedApplyForce = false;
-            }
-        }
+        int sc = s.getNewValue(hasStance());
+        upgradeMagicNumber(sc);
 
-        if (hasStance()) {
-            if (!upgradedApplyStance) {
-                upgradeMagicNumber(1);
-                upgradedApplyStance = true;
-            }
-        } else {
-            if (upgradedApplyStance) {
-                upgradeMagicNumber(-1);
-                upgradedApplyStance = false;
-            }
-        }
+        int sf = f.getNewValue(hasStanceForce());
+        upgradeMagicNumber(sf);
+
         initializeDescription();
     }
 

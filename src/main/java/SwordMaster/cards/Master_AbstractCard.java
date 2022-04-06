@@ -3,8 +3,6 @@ package SwordMaster.cards;
 import basemod.abstracts.CustomCard;
 import basemod.interfaces.OnPlayerTurnStartSubscriber;
 
-import java.util.function.Function;
-
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,6 +12,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import SwordMaster.powers.FlowingStance;
 import SwordMaster.powers.FlowingStanceForcePower;
 import SwordMaster.relics.AttackCounter;
+import SwordMaster.actions.ApplyFlowingStanceAction;
+import SwordMaster.actions.ReduceFlowingStanceAction;
 import SwordMaster.characters.swordMaster;
 
 public abstract class Master_AbstractCard extends CustomCard implements OnPlayerTurnStartSubscriber {
@@ -28,7 +28,16 @@ public abstract class Master_AbstractCard extends CustomCard implements OnPlayer
      * @param p
      */
     public void ApplyFlowingStance(AbstractPlayer p) {
-        addToBot(new ApplyPowerAction(p, p, new FlowingStance(p, 1), 1));
+        addToBot(new ApplyFlowingStanceAction(p));
+    }
+
+    /**
+     * 使用后失去一层流心buff
+     */
+    public void ReduceFlowingStance(AbstractPlayer p) {
+        if (!hasStance())
+            return;
+        addToTop(new ReduceFlowingStanceAction(p));
     }
 
     /**
@@ -56,16 +65,6 @@ public abstract class Master_AbstractCard extends CustomCard implements OnPlayer
     }
 
     /**
-     * 使用后失去一层流心buff
-     */
-    public void ReduceFlowingStance() {
-        if (!hasStance())
-            return;
-        AbstractPlayer player = AbstractDungeon.player;
-        addToTop(new ReducePowerAction(player, player, FlowingStance.POWER_ID, 1));
-    }
-
-    /**
      * 获取本场战斗攻击次数
      * 
      * @return
@@ -79,59 +78,18 @@ public abstract class Master_AbstractCard extends CustomCard implements OnPlayer
         return counter.counter;
     }
 
-    boolean upgradedStanceDamage = false;
-
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        if (hasTag(swordMaster.Enums.FlowingStance) && hasStance()) {
-            {
-                int n = preApplyStanceForDamage();
-                if (!upgradedStanceDamage) {
-                    upgradeDamage(n);
-                } else {
-                    upgradeDamage(0);
-                    upgradedStanceDamage = false;
-                }
-            }
-            {
-                int n = preApplyStanceForMagicNumber();
-            }
-            applyStanceForCost();
-            applyStanceForBlock();
-        }
-        if (hasTag(swordMaster.Enums.FlowingForce) && hasStanceForce()) {
-            applyStanceForceForDamage();
-            applyStanceForceForMagicNumber();
-            applyStanceForceForCost();
-            applyStanceForceForBlock();
+    public void triggerOnGlowCheck() {
+        if (hasTag(swordMaster.Enums.FlowingStance) || hasTag(swordMaster.Enums.FlowingForce)) {
+            this.glowCheck();
         }
     }
 
-    public int preApplyStanceForDamage() {
-        return 0;
-    }
-
-    public int preApplyStanceForMagicNumber() {
-        return 0;
-    }
-
-    public void applyStanceForCost() {
-    }
-
-    public void applyStanceForBlock() {
-    }
-
-    public void applyStanceForceForDamage() {
-    }
-
-    public void applyStanceForceForMagicNumber() {
-    }
-
-    public void applyStanceForceForCost() {
-    }
-
-    public void applyStanceForceForBlock() {
+    public void glowCheck() {
+        this.glowColor = Master_AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        if (this.hasStance() || this.hasStanceForce()) {
+            this.glowColor = Master_AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+        }
     }
 
     @Override

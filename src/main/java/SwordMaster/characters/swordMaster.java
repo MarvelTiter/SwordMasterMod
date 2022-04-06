@@ -26,6 +26,7 @@ import SwordMaster.cards.TelekineticSwords;
 import SwordMaster.cards.UltimateSlayTempest;
 import SwordMaster.cards.UpwardSlash;
 import SwordMaster.cards.WeaponWieldersZenith;
+import SwordMaster.listener.FlowingStanceChange;
 import SwordMaster.relics.AttackCounter;
 import SwordMaster.relics.Limiter;
 import basemod.abstracts.CustomPlayer;
@@ -112,24 +113,27 @@ public class swordMaster extends CustomPlayer {
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
         System.out.println("Begin loading starter Deck Strings");
-        retVal.add(Strike_SwordMaster.ID);
-        retVal.add(Strike_SwordMaster.ID);
-        retVal.add(Strike_SwordMaster.ID);
-        retVal.add(Strike_SwordMaster.ID);
-        retVal.add(Defend_SwordMaster.ID);
-        retVal.add(Defend_SwordMaster.ID);
-        retVal.add(Defend_SwordMaster.ID);
-        retVal.add(Defend_SwordMaster.ID);
-        retVal.add(UpwardSlash.ID);
-        retVal.add(BackStepCutter.ID);
+        // retVal.add(Strike_SwordMaster.ID);
+        // retVal.add(Strike_SwordMaster.ID);
+        // retVal.add(Strike_SwordMaster.ID);
+        // retVal.add(Strike_SwordMaster.ID);
+        // retVal.add(Defend_SwordMaster.ID);
+        // retVal.add(Defend_SwordMaster.ID);
+        // retVal.add(Defend_SwordMaster.ID);
+        // retVal.add(Defend_SwordMaster.ID);
+        // retVal.add(UpwardSlash.ID);
+        // retVal.add(BackStepCutter.ID);
 
         // retVal.add(Derange.ID);
         // retVal.add(BasicTraining.ID);
         // retVal.add(SecretSwordArt.ID);
         // retVal.add(Guard.ID);
 
-        // retVal.add(FlowingStanceForce.ID);
-        // retVal.add(FlowingStanceDefend.ID);
+        retVal.add(FlowingStanceForce.ID);
+        retVal.add(FlowingStanceSwift.ID);
+        retVal.add(FlowingStanceClash.ID);
+        retVal.add(FlowingStanceRise.ID);
+        retVal.add(FlowingStanceDefend.ID);
         // retVal.add(SwordBarrier.ID);
         // retVal.add(KingGuardLighting.ID);
         // retVal.add(KingGuardWind.ID);
@@ -225,4 +229,24 @@ public class swordMaster extends CustomPlayer {
     public String getVampireText() {
         return TEXT[1];
     }
+
+    // #region
+
+    boolean fsStatusChange = false;
+    int fsAmount = 0;
+
+    public void updateFlowingStance(int amount) {
+        fsStatusChange = true;
+        fsAmount += amount;
+    }
+
+    public int getFlowingAmount() {
+        return fsAmount;
+    }
+
+    public boolean isFlowingStatusChange() {
+        return fsStatusChange;
+    }
+
+    // #endregion
 }

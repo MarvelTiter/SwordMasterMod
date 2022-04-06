@@ -36,22 +36,6 @@ public class FlowingStance extends AbstractPower implements CloneablePowerInterf
         updateDescription();
     }
 
-    // public float atDamageReceive(float damage, DamageInfo.DamageType type) {
-    // if (type == DamageInfo.DamageType.NORMAL) {
-    // return damage + ((float) this.amount);
-    // }
-    // return damage;
-    // }
-
-    // public int onAttacked(DamageInfo info, int damageAmount) {
-    // // if (info.type == DamageInfo.DamageType.NORMAL) {
-    // // flash();
-    // // addToTop(new ReducePowerAction(this.owner, this.owner, this.ID, 1));
-    // // updateDescription();
-    // // }
-    // return damageAmount;
-    // }
-
     public void atEndOfTurn(boolean isPlayer) {
         // if (!this.owner.hasPower(HorrorPower.POWER_ID)) {
 
