@@ -17,7 +17,7 @@
     },
     "swordmaster:TelekineticSwords": {
         "NAME": "万剑归宗",
-        "DESCRIPTIONS": ["再打出 #b", " 次攻击 NL 获取 [E] 并抽 #b1 张牌"]
+        "DESCRIPTIONS": ["再打出 #b", " 次攻击 NL 获得 [E] 并抽 #b1 张牌"]
     },
     "swordmaster:StunSelfPower": {
         "NAME": "眩晕",
@@ -42,7 +42,7 @@
     "swordmaster:Guard": {
         "NAME": "格挡姿态",
         "DESCRIPTIONS": [
-            "所受伤害减少40%"
+            "所受伤害减少30%"
         ]
     },
     "swordmaster:LoseThronsPower": {
@@ -55,7 +55,27 @@
     "swordmaster:SwordBarrierPower": {
         "NAME": "招架",
         "DESCRIPTIONS": [
-            "每次攻击获得2点格挡"
+            "每次攻击获得 #b"," 点格挡"
+        ]
+    },
+    "swordmaster:AutoGuardPower": {
+        "NAME": "自动格挡",
+        "DESCRIPTIONS": [
+            " #y格挡姿态 效果增强50% NL 每回合获得 #b"," 点 #y格挡 "
+        ]
+    },
+    "swordmaster:DualWieldingPower": {
+        "NAME": "双刀流",
+        "DESCRIPTIONS": [
+            "本回合打出的下一张牌将被打出两次",
+            "本回合打出的下 #b",
+            " 张牌将被打出两次"
+        ]
+    },
+    "swordmaster:LightsabreMasteryPower": {
+        "NAME": "光剑精通",
+        "DESCRIPTIONS": [
+            "每打出一张 #y耗能 为 #b0 的攻击牌，抽 #b"," 张牌"
         ]
     }
 }

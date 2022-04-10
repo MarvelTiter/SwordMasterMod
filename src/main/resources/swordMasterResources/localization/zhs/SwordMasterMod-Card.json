@@ -25,7 +25,8 @@
     },
     "swordmaster:UpwardSlash": {
         "NAME": "上挑",
-        "DESCRIPTION": "造成 !D! 点伤害 NL 给予 !M! 层 swordmaster:感电 "
+        "DESCRIPTION": "造成 !D! 点伤害 NL 给予 !M! 层 swordmaster:感电 ",
+        "UPGRADE_DESCRIPTION": "造成 !D! 点伤害 NL 给予 !M! 层 swordmaster:感电 NL 获得1层 swordmaster:流心 "
     },
     "swordmaster:AsheFork": {
         "NAME": "银光落刃",
@@ -97,7 +98,7 @@
     },
     "swordmaster:OmnislayShootingStar": {
         "NAME": "极鬼剑术·流星落",
-        "DESCRIPTION": "击晕所有敌人一回合 NL 消耗 ",
+        "DESCRIPTION": "击晕所有敌人一回合 NL 消耗 NL swordmaster:流心 : [E] -1",
         "UPGRADE_DESCRIPTION": "NL 保留 "
     },
     "swordmaster:WaveWheelSlasher": {
@@ -120,7 +121,7 @@
     },
     "swordmaster:Guard": {
         "NAME": "格挡姿态",
-        "DESCRIPTION": "本回合所受伤害减少40%，获得 !B! 格挡"
+        "DESCRIPTION": "本回合所受伤害减少30%，获得 !B! 格挡"
     },
     "swordmaster:GuardCross": {
         "NAME": "格挡反击",
@@ -128,8 +129,8 @@
     },
     "swordmaster:HeartBlade": {
         "NAME": "心斩",
-        "DESCRIPTION": "给予所有敌人1层虚弱 NL swordmaster:感电 本回合不消失",
-        "UPGRADE_DESCRIPTION": "给予所有敌人 NL 1层虚弱 NL 1层易伤 NL swordmaster:感电 本回合不消失"
+        "DESCRIPTION": "给予所有敌人一层虚弱 NL swordmaster:感电 本回合不消失",
+        "UPGRADE_DESCRIPTION": "给予所有敌人 NL 一层虚弱 NL 一层易伤 NL swordmaster:感电 本回合不消失"
     },
     "swordmaster:KingGuardWind": {
         "NAME": "风之守护",
@@ -141,11 +142,46 @@
     },
     "swordmaster:SwordBarrier": {
         "NAME": "招架",
-        "DESCRIPTION": "每次攻击获得 !M! 点格挡 NL 消耗",
-        "UPGRADE_DESCRIPTION": "每次攻击获得 !M! 点格挡"
+        "DESCRIPTION": "每次攻击获得 !B! 点格挡 NL swordmaster:流心狂 : 格挡 +1 NL 消耗",
+        "UPGRADE_DESCRIPTION": "每次攻击获得 !M! 点格挡 NL swordmaster:流心狂 : 格挡 +1"
     },
     "swordmaster:FlowingStanceDefend": {
         "NAME": "流心·御",
-        "DESCRIPTION": "获得 !B! 点 格挡 X 次 NL swordmaster:流心狂 :次数+1"
+        "DESCRIPTION": "获得 !B! 点 格挡 X 次 NL swordmaster:流心 :次数+1"
+    },
+    "swordmaster:AutoGuard": {
+        "NAME": "自动格挡",
+        "DESCRIPTION": " *格挡姿态 效果增强50% NL 每回合获得 !B! 点 格挡 NL swordmaster:流心 : [E] -1"
+    },
+    "swordmaster:SpectralThrust": {
+        "NAME": "连牙",
+        "DESCRIPTION": "造成 !D! 点伤害 NL 消耗6 swordmaster:连击 额外攻击一次"
+    },
+    "swordmaster:PhantomSlash": {
+        "NAME": "连斩",
+        "DESCRIPTION": "消耗所有 swordmaster:连击 NL 每 !M! swordmaster:连击 造成 !D! 点伤害"
+    },
+    "swordmaster:UltimatePhantomSlash": {
+        "NAME": "连斩·极",
+        "DESCRIPTION": "造成 !D! 点伤害 NL 消耗所有连击 NL 每 !M! swordmaster:连击 攻击+1"
+    },
+    "swordmaster:MoonlightSlash": {
+        "NAME": "月光斩",
+        "DESCRIPTION": "造成 !D! 点伤害 NL swordmaster:连击 + !M! "
+    },
+    "swordmaster:LightsabreMastery": {
+        "NAME": "光剑精通",
+        "DESCRIPTION": "每打出一张耗能为0的攻击牌抽一张牌",
+        "UPGRADE_DESCRIPTION": " 固有 NL 每打出一张耗能为0的攻击牌抽一张牌"
+    },
+    "swordmaster:DualWielding": {
+        "NAME": "双刀流",
+        "DESCRIPTION": "本回合下一张牌打出两次 NL swordmaster:流心 : [E] -1",
+        "UPGRADE_DESCRIPTION": "本回合下一张牌打出两次 NL swordmaster:流心 : [E] -1 NL 保留 "
+    },
+    "swordmaster:OmnislayMindsSword": {
+        "NAME": "极鬼剑术·破空斩",
+        "DESCRIPTION": "每3 swordmaster:连击 造成 !D! 点伤害 NL 消耗 ",
+        "UPGRADE_DESCRIPTION": " NL (攻击次数 !M! )"
     }
 }

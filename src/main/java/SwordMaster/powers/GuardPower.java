@@ -1,11 +1,14 @@
 package SwordMaster.powers;
 
 import SwordMaster.SwordMasterMod;
+import SwordMaster.actions.ReduceFlowingStanceAction;
 import SwordMaster.utils.TextureLoader;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -20,9 +23,10 @@ public class GuardPower extends AbstractPower {
     private static final Texture tex84 = TextureLoader.getTexture(SwordMasterMod.makePowerPath("Guard_p.png"));
     private static final Texture tex32 = TextureLoader.getTexture(SwordMasterMod.makePowerPath("Guard.png"));
 
-    public GuardPower(AbstractCreature owner) {
+    public GuardPower(AbstractCreature owner, int amount) {
         this.name = NAME;
         this.ID = POWER_ID;
+        this.amount = amount;
         this.owner = owner;
         this.priority = 4;
         this.type = AbstractPower.PowerType.BUFF;
@@ -35,26 +39,29 @@ public class GuardPower extends AbstractPower {
     }
 
     public float atDamageReceive(float damage, DamageInfo.DamageType type) {
-        return (float) (damage * 0.6);
-    }
-
-    public int onAttacked(DamageInfo info, int damageAmount) {
-        flash();
-        return damageAmount;
+        float a = 0.3f;
+        if (this.owner.hasPower(AutoGuardPower.POWER_ID)){
+            a = a * 1.5f;
+        }
+        return damage * (1 - a);
     }
 
     @Override
     public void atEndOfRound() {
-        flash();
-        addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+        if (this.amount > 1) {
+            addToTop(new ReducePowerAction(this.owner,this.owner,POWER_ID,1));
+        } else {
+            addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+        }
     }
 
-    // public void atEndOfTurn(boolean isPlayer) {
-    // // if (!this.owner.hasPower(HorrorPower.POWER_ID)) {
-
-    // // }
-
-    // }
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        flash();
+        if (this.owner.hasPower(AutoGuardPower.POWER_ID)){
+            this.owner.getPower(AutoGuardPower.POWER_ID).flash();
+        }
+        return damageAmount;
+    }
 
     public void updateDescription() {
         this.description = DESCRIPTIONS[0];

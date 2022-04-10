@@ -1,5 +1,6 @@
 package SwordMaster.cards;
 
+import SwordMaster.actions.FlowingStanceRiseAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -38,6 +39,7 @@ public class FlowingStanceRise extends Master_AbstractCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
         this.tags.add(swordMaster.Enums.FlowingForce);
         this.tags.add(swordMaster.Enums.FlowingStance);
+        this.tags.add(swordMaster.Enums.FlowingMagic);
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = MAGIC_NUMBER;
     }
@@ -53,34 +55,24 @@ public class FlowingStanceRise extends Master_AbstractCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (int i = 0; i < this.baseMagicNumber; i++) {
-            DamageInfo dInfo = new DamageInfo(p, this.damage, this.damageTypeForTurn);
-            AbstractGameAction action = new DamageAction(m, dInfo, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-            addToBot(action);
+        for (int i = 0; i < this.magicNumber; i++) {
+            addToBot(CustomAttackAction(p,m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         }
         ReduceFlowingStance(p);
     }
 
-    // 流心
-    StatusManage s = new StatusManage();
-    // 流心狂
-    StatusManage f = new StatusManage();
-
     @Override
     public void applyPowers() {
         super.applyPowers();
-
-        int sc = s.getNewValue(hasStance());
-        upgradeMagicNumber(sc);
-
-        int sf = f.getNewValue(hasStanceForce());
-        upgradeMagicNumber(sf);
-
+        int amt = 0;
+        if (hasStance()){
+            amt += 1;
+        }
+        if (hasStanceForce()){
+            amt += 1;
+        }
+        this.magicNumber = baseMagicNumber + amt;
+        isMagicNumberModified = true;
         initializeDescription();
-    }
-
-    @Override
-    public AbstractCard makeCopy() {
-        return new FlowingStanceRise();
     }
 }

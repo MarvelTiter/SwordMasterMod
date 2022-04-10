@@ -3,7 +3,9 @@ package SwordMaster;
 import SwordMaster.cards.Master_AbstractCard;
 import SwordMaster.characters.swordMaster;
 import SwordMaster.relics.AttackCounter;
+import SwordMaster.relics.Bracelet;
 import SwordMaster.relics.Limiter;
+import SwordMaster.relics.LimiterBreak;
 import SwordMaster.utils.IDCheckDontTouchPls;
 import SwordMaster.utils.KeywordWithProper;
 import basemod.AutoAdd;
@@ -180,8 +182,14 @@ public class SwordMasterMod
         System.out.println("Adding relics");
         BaseMod.addRelicToCustomPool(new Limiter(), swordMaster.Enums.COLOR_LIGHT_BLUE);
         BaseMod.addRelicToCustomPool(new AttackCounter(), swordMaster.Enums.COLOR_LIGHT_BLUE);
+        BaseMod.addRelicToCustomPool(new LimiterBreak(), swordMaster.Enums.COLOR_LIGHT_BLUE);
+        BaseMod.addRelicToCustomPool(new Bracelet(), swordMaster.Enums.COLOR_LIGHT_BLUE);
+
         UnlockTracker.markRelicAsSeen(Limiter.ID);
         UnlockTracker.markRelicAsSeen(AttackCounter.ID);
+        UnlockTracker.markRelicAsSeen(LimiterBreak.ID);
+        UnlockTracker.markRelicAsSeen(Bracelet.ID);
+
         System.out.println("Done adding relics!");
     }
 

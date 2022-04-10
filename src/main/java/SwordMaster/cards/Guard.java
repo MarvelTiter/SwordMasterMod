@@ -33,7 +33,7 @@ public class Guard extends Master_AbstractCard {
 
     @Override // com.megacrit.cardcrawl.cards.AbstractCard
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new GuardPower(p)));
+        addToBot(new ApplyPowerAction(p, p, new GuardPower(p, 1)));
         addToBot(new GainBlockAction(p, p, this.block));
     }
 

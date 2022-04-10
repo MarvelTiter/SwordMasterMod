@@ -24,13 +24,14 @@ public class FlowingStanceDefend extends Master_AbstractCard {
 
     public FlowingStanceDefend() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(swordMaster.Enums.FlowingForce);
         this.baseBlock = 7;
     }
 
     @Override // com.megacrit.cardcrawl.cards.AbstractCard
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new FlowingStanceDefendAction(p, this.block, this.freeToPlayOnce, this.energyOnUse));
-        ApplyFlowingStance(p);
+//        ApplyFlowingStance(p);
     }
 
     @Override // com.megacrit.cardcrawl.cards.AbstractCard

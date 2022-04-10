@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import SwordMaster.SwordMasterMod;
 import SwordMaster.characters.swordMaster;
 import SwordMaster.powers.SwordBarrierPower;
+import SwordMaster.utils.StatusManage;
 
 public class SwordBarrier extends Master_AbstractCard {
     public static final String ID = SwordMasterMod.makeID(SwordBarrier.class.getSimpleName());
@@ -25,16 +26,19 @@ public class SwordBarrier extends Master_AbstractCard {
 
     public SwordBarrier() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = 1;
+        this.tags.add(swordMaster.Enums.FlowingStance);
+        this.tags.add(swordMaster.Enums.FlowingBlock);
+        this.baseBlock = 1;
         this.exhaust = true;
     }
 
-    @Override // com.megacrit.cardcrawl.cards.AbstractCard
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new SwordBarrierPower(p, 2)));
+        addToBot(new ApplyPowerAction(p, p, new SwordBarrierPower(p, this.block)));
+        ReduceFlowingStance(p);
     }
 
-    @Override // com.megacrit.cardcrawl.cards.AbstractCard
+    @Override
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
@@ -42,10 +46,5 @@ public class SwordBarrier extends Master_AbstractCard {
             this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
             initializeDescription();
         }
-    }
-
-    @Override // com.megacrit.cardcrawl.cards.AbstractCard
-    public AbstractCard makeCopy() {
-        return new SwordBarrier();
     }
 }

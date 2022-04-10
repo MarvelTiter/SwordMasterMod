@@ -1,31 +1,7 @@
 package SwordMaster.characters;
 
 import SwordMaster.SwordMasterMod;
-import SwordMaster.cards.BackStepCutter;
-import SwordMaster.cards.BasicTraining;
-import SwordMaster.cards.Defend_SwordMaster;
-import SwordMaster.cards.DeftGrip;
-import SwordMaster.cards.Derange;
-import SwordMaster.cards.FlowingStanceClash;
-import SwordMaster.cards.FlowingStanceDefend;
-import SwordMaster.cards.FlowingStanceForce;
-import SwordMaster.cards.FlowingStanceRise;
-import SwordMaster.cards.FlowingStanceSwift;
-import SwordMaster.cards.Guard;
-import SwordMaster.cards.GuardCross;
-import SwordMaster.cards.HeartBlade;
-import SwordMaster.cards.KingGuardLighting;
-import SwordMaster.cards.KingGuardWind;
-import SwordMaster.cards.LightningDrawSword;
-import SwordMaster.cards.RagingDragonSlash;
-import SwordMaster.cards.RapidWeaponSwitch;
-import SwordMaster.cards.SecretSwordArt;
-import SwordMaster.cards.Strike_SwordMaster;
-import SwordMaster.cards.SwordBarrier;
-import SwordMaster.cards.TelekineticSwords;
-import SwordMaster.cards.UltimateSlayTempest;
-import SwordMaster.cards.UpwardSlash;
-import SwordMaster.cards.WeaponWieldersZenith;
+import SwordMaster.cards.*;
 import SwordMaster.listener.FlowingStanceChange;
 import SwordMaster.relics.AttackCounter;
 import SwordMaster.relics.Limiter;
@@ -88,9 +64,21 @@ public class swordMaster extends CustomPlayer {
         @SpireEnum(name = "MASTER_COLOR")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
         @SpireEnum(name = "FlowingStance")
-        public static com.megacrit.cardcrawl.cards.AbstractCard.CardTags FlowingStance;
+        public static AbstractCard.CardTags FlowingStance;
         @SpireEnum(name = "FlowingForce")
-        public static com.megacrit.cardcrawl.cards.AbstractCard.CardTags FlowingForce;
+        public static AbstractCard.CardTags FlowingForce;
+        @SpireEnum(name = "FlowingDamage")
+        public static AbstractCard.CardTags FlowingDamage;
+        @SpireEnum(name = "FlowingEnergy")
+        public static AbstractCard.CardTags FlowingEnergy;
+        @SpireEnum(name = "FlowingMagic")
+        public static AbstractCard.CardTags FlowingMagic;
+        @SpireEnum(name = "FlowingBlock")
+        public static AbstractCard.CardTags FlowingBlock;
+        @SpireEnum(name = "HitPower")
+        public static AbstractCard.CardTags HitPower;
+        @SpireEnum(name = "ElectricShockPower")
+        public static AbstractCard.CardTags ElectricShockPower;
     }
 
     public swordMaster(String name, AbstractPlayer.PlayerClass setClass) {
@@ -121,20 +109,20 @@ public class swordMaster extends CustomPlayer {
         // retVal.add(Defend_SwordMaster.ID);
         // retVal.add(Defend_SwordMaster.ID);
         // retVal.add(Defend_SwordMaster.ID);
-        // retVal.add(UpwardSlash.ID);
+//         retVal.add(UpwardSlash.ID);
         // retVal.add(BackStepCutter.ID);
 
         // retVal.add(Derange.ID);
-        // retVal.add(BasicTraining.ID);
-        // retVal.add(SecretSwordArt.ID);
-        // retVal.add(Guard.ID);
+         retVal.add(FlowingStanceClash.ID);
+         retVal.add(SecretSwordArt.ID);
+        retVal.add(SecretSwordArt.ID);
+         retVal.add(FlowingStanceRise.ID);
 
-        retVal.add(FlowingStanceForce.ID);
-        retVal.add(FlowingStanceSwift.ID);
-        retVal.add(FlowingStanceClash.ID);
-        retVal.add(FlowingStanceRise.ID);
-        retVal.add(FlowingStanceDefend.ID);
-        // retVal.add(SwordBarrier.ID);
+        retVal.add(OmnislayMindsSword.ID);
+//        retVal.add(RagingDragonSlash.ID);
+//        retVal.add(LightningDrawSword.ID);
+//        retVal.add(FlowingStanceDefend.ID);
+//        retVal.add(SwordBarrier.ID);
         // retVal.add(KingGuardLighting.ID);
         // retVal.add(KingGuardWind.ID);
 

@@ -1,5 +1,6 @@
 package SwordMaster.actions;
 
+import SwordMaster.powers.FlowingStanceForcePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -34,9 +35,9 @@ public class FlowingStanceDefendAction extends AbstractGameAction {
             this.p.getRelic("Chemical X").flash();
         }
 
-        if (this.p.hasPower(FlowingStanceForce.ID)) {
+        if (this.p.hasPower(FlowingStanceForcePower.POWER_ID)) {
             effect += 1;
-            this.p.getPower(FlowingStanceForce.ID).flash();
+            this.p.getPower(FlowingStanceForcePower.POWER_ID).flash();
         }
 
         if (effect > 0) {

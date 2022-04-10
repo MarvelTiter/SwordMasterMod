@@ -25,9 +25,6 @@ public class Limiter extends CustomRelic {
 
     public void atBattleStart() {
         AbstractPlayer p = AbstractDungeon.player;
-        addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, 1), 1));
-        addToBot(new ApplyPowerAction(p, p, new LoseStrengthPower(p, 1), 1));
-
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, 1), 1));
         addToBot(new ApplyPowerAction(p, p, new LoseDexterityPower(p, 1), 1));
 

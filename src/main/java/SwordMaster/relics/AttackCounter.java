@@ -27,13 +27,23 @@ public class AttackCounter extends CustomRelic {
         counter = 0;
     }
 
+    @Override
     public void atBattleStart() {
-        counter = 0;
+        reset();
     }
 
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         counter++;
+    }
+
+    public void modifyCount(int count) {
+        counter += count;
+        flash();
+    }
+
+    public void reset(){
+        counter = 0;
         flash();
     }
 

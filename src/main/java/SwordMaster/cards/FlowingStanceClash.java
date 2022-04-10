@@ -33,6 +33,7 @@ public class FlowingStanceClash extends Master_AbstractCard {
         // 卡牌ID，卡牌名称，图片路径，费用，描述，卡牌类型，卡牌颜色，卡牌稀有度，卡牌目标
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
         this.tags.add(swordMaster.Enums.FlowingForce);
+        this.tags.add(swordMaster.Enums.FlowingDamage);
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = MAGIC_NUMBER;
     }
@@ -54,16 +55,6 @@ public class FlowingStanceClash extends Master_AbstractCard {
             addToBot(action);
         }
         ApplyFlowingStance(p);
-    }
-
-    StatusManage s = new StatusManage();
-
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        int n = s.getNewValue(hasStanceForce());
-        upgradeDamage(n);
-        initializeDescription();
     }
 
     @Override

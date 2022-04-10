@@ -30,6 +30,7 @@ public class RagingDragonSlash extends Master_AbstractCard {
     public RagingDragonSlash() {
         // 卡牌ID，卡牌名称，图片路径，费用，描述，卡牌类型，卡牌颜色，卡牌稀有度，卡牌目标
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(swordMaster.Enums.ElectricShockPower);
         this.baseDamage = ATTACK_DMG;
     }
 
@@ -44,13 +45,7 @@ public class RagingDragonSlash extends Master_AbstractCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.baseDamage = p.currentBlock;
-        if (m.hasPower(ElectricShock.POWER_ID)) {
-            this.baseDamage = (int) (this.baseDamage * 1.5);
-        }
-        calculateCardDamage(m);
-        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.NORMAL),
-                AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        addToBot(CustomAttackAction(p,m, AbstractGameAction.AttackEffect.SMASH));
         this.rawDescription = cardStrings.DESCRIPTION;
         initializeDescription();
     }

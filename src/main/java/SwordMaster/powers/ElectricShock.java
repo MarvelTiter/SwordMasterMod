@@ -1,15 +1,24 @@
 package SwordMaster.powers;
 
 import SwordMaster.SwordMasterMod;
+import SwordMaster.characters.swordMaster;
 import SwordMaster.utils.TextureLoader;
 import basemod.interfaces.CloneablePowerInterface;
+
+import java.lang.reflect.Field;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.AbstractMonster.Intent;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class ElectricShock extends AbstractPower implements CloneablePowerInterface {
@@ -36,11 +45,16 @@ public class ElectricShock extends AbstractPower implements CloneablePowerInterf
         updateDescription();
     }
 
-    public float atDamageReceive(float damage, DamageInfo.DamageType type) {
-        if (type == DamageInfo.DamageType.NORMAL) {
-            return damage + ((float) this.amount);
+    @Override
+    public float atDamageReceive(float damage, DamageInfo.DamageType damageType, AbstractCard card) {
+        float d = damage;
+        if (damageType == DamageInfo.DamageType.NORMAL) {
+            d += ((float) this.amount);
         }
-        return damage;
+        if (card.hasTag(swordMaster.Enums.ElectricShockPower)){
+            d *= 1.5;
+        }
+        return d;
     }
 
     public int onAttacked(DamageInfo info, int damageAmount) {

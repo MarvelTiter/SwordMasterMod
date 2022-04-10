@@ -20,9 +20,6 @@ public class ChargeCrash extends Master_AbstractCard {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String IMG_PATH = SwordMasterMod.makeCardPath("Charge_Crash.png");
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 6;
-    private static final int MAGIC_NUMBER = 1;
-    private static final int UPGRADE_MAGIC = 1;
     private static final CardType CARD_TYPE = CardType.ATTACK;
     private static final CardColor COLOR = swordMaster.Enums.COLOR_LIGHT_BLUE;
     private static final CardRarity RARITY = CardRarity.COMMON;
@@ -31,8 +28,8 @@ public class ChargeCrash extends Master_AbstractCard {
     public ChargeCrash() {
         // 卡牌ID，卡牌名称，图片路径，费用，描述，卡牌类型，卡牌颜色，卡牌稀有度，卡牌目标
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = ATTACK_DMG;
-        this.baseMagicNumber = MAGIC_NUMBER;
+        this.baseDamage = 6;
+        this.baseMagicNumber = 1;
     }
 
     @Override
@@ -40,7 +37,7 @@ public class ChargeCrash extends Master_AbstractCard {
         // 卡牌升级后的效果
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_MAGIC);
+            upgradeDamage(3);
         }
     }
 

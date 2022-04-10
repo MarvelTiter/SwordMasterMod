@@ -37,6 +37,7 @@ public class FlowingStanceSwift extends Master_AbstractCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
         this.tags.add(swordMaster.Enums.FlowingForce);
         this.tags.add(swordMaster.Enums.FlowingStance);
+        this.tags.add(swordMaster.Enums.FlowingEnergy);
         this.baseDamage = ATTACK_DMG;
     }
 
@@ -60,14 +61,6 @@ public class FlowingStanceSwift extends Master_AbstractCard {
         ReduceFlowingStance(p);
     }
 
-    StatusManage s = new StatusManage();
-
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        int n = s.getNewValue(hasStance());
-        setCostForTurn(costForTurn - n);
-    }
 
     @Override
     public AbstractCard makeCopy() {

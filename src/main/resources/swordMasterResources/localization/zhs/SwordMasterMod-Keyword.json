@@ -25,5 +25,12 @@
             "流心狂"
         ],
         "DESCRIPTION": " #y流心 系列将得到加强"
+    },
+    {
+        "PROPER_NAME": "连击",
+        "NAMES": [
+            "连击"
+        ],
+        "DESCRIPTION": "本场战斗中的攻击次数"
     }
 ]

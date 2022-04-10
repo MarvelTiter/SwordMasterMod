@@ -3,7 +3,7 @@
         "NAME": "限制器",
         "FLAVOR": "限制鬼手侵蚀的装置",
         "DESCRIPTIONS": [
-            "每场战斗第一回合获得 #b1 临时力量 #b1 临时敏捷。"
+            "每场战斗第一回合获得 #b1 点敏捷"
         ]
     },
     "swordmaster:AttackCounter": {
@@ -11,6 +11,20 @@
         "FLAVOR": "计算每场战斗攻击次数",
         "DESCRIPTIONS": [
             "计算每场战斗攻击次数"
+        ]
+    },
+    "swordmaster:LimiterBreak": {
+        "NAME": "限制器解除",
+        "FLAVOR": "我不做人啦！！",
+        "DESCRIPTIONS": [
+            "每场战斗第一回合获得 #b1 点力量和失去 #b2 点敏捷"
+        ]
+    },
+    "swordmaster:Bracelet": {
+        "NAME": "墨竹手镯",
+        "FLAVOR": "单带悬空城",
+        "DESCRIPTIONS": [
+            "每回合开始时抽一张牌"
         ]
     }
 }

@@ -3,15 +3,18 @@ package SwordMaster.cards;
 import basemod.abstracts.CustomCard;
 import basemod.interfaces.OnPlayerTurnStartSubscriber;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import SwordMaster.powers.FlowingStance;
 import SwordMaster.powers.FlowingStanceForcePower;
 import SwordMaster.relics.AttackCounter;
+import SwordMaster.utils.StatusManage;
 import SwordMaster.actions.ApplyFlowingStanceAction;
 import SwordMaster.actions.ReduceFlowingStanceAction;
 import SwordMaster.characters.swordMaster;
@@ -37,7 +40,7 @@ public abstract class Master_AbstractCard extends CustomCard implements OnPlayer
     public void ReduceFlowingStance(AbstractPlayer p) {
         if (!hasStance())
             return;
-        addToTop(new ReduceFlowingStanceAction(p));
+        addToBot(new ReduceFlowingStanceAction(p));
     }
 
     /**
@@ -80,16 +83,47 @@ public abstract class Master_AbstractCard extends CustomCard implements OnPlayer
 
     @Override
     public void triggerOnGlowCheck() {
-        if (hasTag(swordMaster.Enums.FlowingStance) || hasTag(swordMaster.Enums.FlowingForce)) {
-            this.glowCheck();
+        boolean isGlow = false;
+        if (hasTag(swordMaster.Enums.FlowingStance)) {
+            isGlow |= this.hasStance();
+        }
+        if ( hasTag(swordMaster.Enums.FlowingForce)){
+            isGlow |= this.hasStanceForce();
+        }
+        if (hasTag(swordMaster.Enums.HitPower)) {
+            isGlow |= this.glowCheckHit();
+        }
+        this.glowColor = Master_AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        if (isGlow) {
+            this.glowColor = Master_AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         }
     }
 
-    public void glowCheck() {
-        this.glowColor = Master_AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
-        if (this.hasStance() || this.hasStanceForce()) {
-            this.glowColor = Master_AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+    public boolean glowCheckHit(){
+        return  false;
+    }
+
+    protected AbstractGameAction CustomAttackAction(AbstractPlayer p, AbstractMonster m, AbstractGameAction.AttackEffect effect){
+        DamageInfo dInfo = new DamageInfo(p, this.damage, this.damageTypeForTurn);
+        return new DamageAction(m, dInfo, effect);
+    }
+
+    protected void modifyAttackCount(int amount) {
+        AbstractPlayer player = AbstractDungeon.player;
+        if (player == null) {
+            return ;
         }
+        AttackCounter counter = (AttackCounter)player.getRelic(AttackCounter.ID);
+        counter.modifyCount(amount);
+    }
+
+    protected void resetAttackCounter() {
+        AbstractPlayer player = AbstractDungeon.player;
+        if (player == null) {
+            return ;
+        }
+        AttackCounter counter = (AttackCounter)player.getRelic(AttackCounter.ID);
+        counter.reset();
     }
 
     @Override

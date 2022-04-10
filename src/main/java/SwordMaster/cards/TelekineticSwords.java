@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import SwordMaster.SwordMasterMod;
 import SwordMaster.characters.swordMaster;
@@ -43,7 +44,12 @@ public class TelekineticSwords extends Master_AbstractCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new TelekineticSwordsPower(p, this.baseMagicNumber), 0));
+        if (p.hasPower(TelekineticSwordsPower.POWER_ID)) {
+            TelekineticSwordsPower power = (TelekineticSwordsPower) p.getPower(TelekineticSwordsPower.POWER_ID);
+            power.updateMaxStack(this.baseMagicNumber);
+        } else {
+            addToBot(new ApplyPowerAction(p, p, new TelekineticSwordsPower(p, this.baseMagicNumber), 0));
+        }
         addToBot(new MakeTempCardInHandAction(new TelekineticSwordsEnd(), 1));
     }
 

@@ -2,7 +2,6 @@ package SwordMaster.utils;
 
 public class StatusManage {
     boolean upgraded = false;
-
     public int getNewValue(boolean hasPower) {
         if (hasPower) {
             if (!upgraded) {
@@ -16,5 +15,9 @@ public class StatusManage {
             }
         }
         return 0;
+    }
+
+    public void reset() {
+        upgraded = false;
     }
 }

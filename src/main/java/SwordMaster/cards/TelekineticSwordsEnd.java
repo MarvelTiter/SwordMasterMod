@@ -46,8 +46,6 @@ public class TelekineticSwordsEnd extends Master_AbstractCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.baseMagicNumber = getAttackCount() / 2;
-        calculateCardDamage(m);
         for (int i = 0; i < this.baseMagicNumber; i++) {
             DamageInfo dInfo = new DamageInfo(p, this.damage, this.damageTypeForTurn);
             AbstractGameAction action = new DamageAction(m, dInfo, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
@@ -55,26 +53,12 @@ public class TelekineticSwordsEnd extends Master_AbstractCard {
         }
     }
 
-    @Override // com.megacrit.cardcrawl.cards.AbstractCard
+    @Override
     public void applyPowers() {
-        this.baseMagicNumber = getAttackCount();
+        this.baseMagicNumber = getAttackCount() / 2;
         super.applyPowers();
         this.rawDescription = cardStrings.DESCRIPTION;
         this.rawDescription += cardStrings.UPGRADE_DESCRIPTION;
         initializeDescription();
     }
-
-    @Override // com.megacrit.cardcrawl.cards.AbstractCard
-    public void calculateCardDamage(AbstractMonster mo) {
-        super.calculateCardDamage(mo);
-        this.rawDescription = cardStrings.DESCRIPTION;
-        this.rawDescription += cardStrings.UPGRADE_DESCRIPTION;
-        initializeDescription();
-    }
-
-    @Override
-    public AbstractCard makeCopy() {
-        return new TelekineticSwordsEnd();
-    }
-
 }

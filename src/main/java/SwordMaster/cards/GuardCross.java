@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import SwordMaster.SwordMasterMod;
 import SwordMaster.characters.swordMaster;
-import SwordMaster.powers.GuardPower;
 import SwordMaster.powers.LoseThronsPower;
 
 public class GuardCross extends Master_AbstractCard {

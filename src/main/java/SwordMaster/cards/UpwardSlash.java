@@ -23,9 +23,6 @@ public class UpwardSlash extends Master_AbstractCard {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String IMG_PATH = SwordMasterMod.makeCardPath("Upward_Slash.png");
     private static final int COST = 0;
-    private static final int ATTACK_DMG = 4;
-    private static final int ESCOUNT = 1;
-    private static final int UPGRADE_PLUS_ES = 1;
     private static final CardType CARD_TYPE = CardType.ATTACK;
     private static final CardColor COLOR = swordMaster.Enums.COLOR_LIGHT_BLUE;
     private static final CardRarity RARITY = CardRarity.BASIC;
@@ -36,8 +33,8 @@ public class UpwardSlash extends Master_AbstractCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
         this.tags.add(CardTags.STARTER_STRIKE);
         this.tags.add(CardTags.STRIKE);
-        this.baseDamage = ATTACK_DMG;
-        this.baseMagicNumber = ESCOUNT;
+        this.baseDamage = 4;
+        this.baseMagicNumber = 1;
     }
 
     @Override
@@ -46,7 +43,8 @@ public class UpwardSlash extends Master_AbstractCard {
         if (!this.upgraded) {
             // 更改名字和提高3点伤害
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_ES);
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            initializeDescription();
         }
     }
 
@@ -56,6 +54,9 @@ public class UpwardSlash extends Master_AbstractCard {
         AbstractGameAction action = new DamageAction(m, dInfo, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         AbstractDungeon.actionManager.addToBottom(action);
         addToBot(new ApplyPowerAction(m, p, new ElectricShock(m, 1), 1, true));
+        if (this.upgraded) {
+            ApplyFlowingStance(p);
+        }
     }
 
     @Override

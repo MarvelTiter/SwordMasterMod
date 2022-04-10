@@ -29,9 +29,6 @@ public class UltimateSlayTempest extends Master_AbstractCard {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String IMG_PATH = SwordMasterMod.makeCardPath("Ultimate_Slay_Tempest.png");
     private static final int COST = 3;
-    private static final int BASE_MAGIC_NUMBER = 15;
-    private static final int BASE_BLOCK = 30;
-    private static final int UPGRADE_BLOCK = 10;
     private static final CardType CARD_TYPE = CardType.ATTACK;
     private static final CardColor COLOR = swordMaster.Enums.COLOR_LIGHT_BLUE;
     private static final CardRarity RARITY = CardRarity.RARE;
@@ -40,9 +37,9 @@ public class UltimateSlayTempest extends Master_AbstractCard {
     public UltimateSlayTempest() {
         // 卡牌ID，卡牌名称，图片路径，费用，描述，卡牌类型，卡牌颜色，卡牌稀有度，卡牌目标
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = BASE_MAGIC_NUMBER;
-        this.baseDamage = 1;
-        this.baseBlock = BASE_BLOCK;
+        this.baseMagicNumber = 10;
+        this.baseDamage = 2;
+        this.baseBlock = 20;
         this.exhaust = true;
     }
 
@@ -51,7 +48,7 @@ public class UltimateSlayTempest extends Master_AbstractCard {
         // 卡牌升级后的效果
         if (!this.upgraded) {
             upgradeName();
-            upgradeBlock(UPGRADE_BLOCK);
+            upgradeBlock(10);
         }
     }
 

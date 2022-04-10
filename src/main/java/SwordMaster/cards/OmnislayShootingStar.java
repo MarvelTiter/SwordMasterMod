@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import SwordMaster.SwordMasterMod;
 import SwordMaster.characters.swordMaster;
 import SwordMaster.utils.StatusManage;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 public class OmnislayShootingStar extends Master_AbstractCard {
     public static final String ID = SwordMasterMod.makeID("OmnislayShootingStar");
@@ -27,6 +28,7 @@ public class OmnislayShootingStar extends Master_AbstractCard {
     public OmnislayShootingStar() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
         this.tags.add(swordMaster.Enums.FlowingStance);
+        this.tags.add(swordMaster.Enums.FlowingEnergy);
         this.exhaust = true;
     }
 
@@ -35,15 +37,6 @@ public class OmnislayShootingStar extends Master_AbstractCard {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             addToBot(new StunMonsterAction(mo, p, 1));
         }
-    }
-
-    StatusManage s = new StatusManage();
-
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        int n = s.getNewValue(hasStance());
-        setCostForTurn(costForTurn - n);
     }
 
     @Override // com.megacrit.cardcrawl.cards.AbstractCard

@@ -15,7 +15,7 @@ public class TextureLoader {
                 loadTexture(textureString);
             } catch (GdxRuntimeException e) {
                 System.out.println("Could not find texture: " + textureString);
-                return getTexture("swordMasterResources/images/ui/missing_texture.png");
+                return getTexture("swordmasterResources/images/ui/missing_texture.png");
             }
         }
         return textures.get(textureString);

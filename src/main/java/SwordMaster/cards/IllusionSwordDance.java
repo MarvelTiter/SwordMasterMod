@@ -17,8 +17,6 @@ public class IllusionSwordDance extends Master_AbstractCard {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String IMG_PATH = SwordMasterMod.makeCardPath("Illusion_Sword_Dance.png");
     private static final int COST = 1;
-    private static final int MAGIC_NUMBER = 3;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final CardType CARD_TYPE = CardType.SKILL;
     private static final CardColor COLOR = swordMaster.Enums.COLOR_LIGHT_BLUE;
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
@@ -27,7 +25,7 @@ public class IllusionSwordDance extends Master_AbstractCard {
     public IllusionSwordDance() {
         // 卡牌ID，卡牌名称，图片路径，费用，描述，卡牌类型，卡牌颜色，卡牌稀有度，卡牌目标
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = MAGIC_NUMBER;
+        this.baseMagicNumber = 2;
     }
 
     @Override
@@ -35,7 +33,7 @@ public class IllusionSwordDance extends Master_AbstractCard {
         // 卡牌升级后的效果
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
+            upgradeMagicNumber(1);
         }
     }
 
